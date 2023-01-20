@@ -1,0 +1,40 @@
+<launch>
+	<!-- vim: set ft=xml noet : -->
+	<!-- example launch script for ArduPilot based FCU's -->
+
+	<group ns="uav1">
+
+		<!-- mavros -->
+		<!-- <arg name="fcu_url" default="udp://:14855@" /> -->
+		<arg name="fcu_url" default="/dev/ttyPixhawk:921600" />
+
+		<arg name="gcs_url" default="" />
+		<arg name="tgt_system" default="1" />
+		<arg name="tgt_component" default="1" />
+		<arg name="system_id" default="1" />
+		<arg name="component_id" default="10" />		
+		<arg name="log_output" default="screen" />
+		<arg name="fcu_protocol" default="v2.0" />
+		<arg name="respawn_mavros" default="true" />
+
+		<include file="$(find aircraft_interface)/launch/mavros.launch">
+			<arg name="pluginlists_yaml" value="$(find aircraft_interface)/config_files/apm_pluginlists.yaml" />
+			<arg name="config_yaml"      value="$(find aircraft_interface)/config_files/apm_config.yaml" />
+
+			<arg name="fcu_url" value="$(arg fcu_url)" />
+			<arg name="gcs_url" value="$(arg gcs_url)" />
+			<arg name="tgt_system" value="$(arg tgt_system)" />
+			<arg name="tgt_component" value="$(arg tgt_component)" />
+			<arg name="log_output" value="$(arg log_output)" />
+			<arg name="fcu_protocol" value="$(arg fcu_protocol)" />
+			<arg name="respawn_mavros" value="$(arg respawn_mavros)" />
+			<arg name="system_id" value="$(arg system_id)" />
+			<arg name="component_id" value="$(arg component_id)" />
+		</include>
+
+		<!-- Set Rates -->
+		<node pkg="aircraft_interface" type="setRates" name="setRates" output="screen" respawn="false" />
+
+	</group>
+
+</launch>

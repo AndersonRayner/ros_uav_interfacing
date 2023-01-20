@@ -1,0 +1,34 @@
+plugin_blacklist:
+# common
+- actuator_control
+- ftp
+- safety_area
+- hil
+- setpoint_velocity
+- wind_estimation
+- manual_control
+#- vfr_hud
+#- imu  # Required for attitude
+# extras
+- altitude
+- debug_value
+- image_pub
+- px4flow
+- vibration
+- vision_speed_estimate
+- wheel_odometry
+- trajectory
+- vision_pose_estimate
+- play_tune
+- mount_control
+- obstacle_distance
+- landing_target
+- cam_imu_sync
+- adsb
+- tunnel
+- terrain
+- log_transfer
+- camera
+
+plugin_whitelist: []
+#- 'sys_*'
